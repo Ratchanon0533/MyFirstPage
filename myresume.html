@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyResume</title>
+</head>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #c1d3e3;
+            color: #2e3b4e;
+            display: flex;
+            
+            
+        }
+        .nav-bar {
+            width: 85%; 
+            background-color: #2C3E50;
+            color: white;
+            padding: 10px 20px;
+            position: sticky; 
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-left: auto;
+            margin-right :auto;
+            border-radius: 13px;
+            margin-bottom:15px;
+        }
+        .nav-bar h2 {
+            color: white;
+            font-size: 0.9em;
+            font-weight: bold;
+            user-select: none;
+            margin-left:20px;
+        }
+        .nav-bar a {
+            text-decoration:none;
+            color: white;
+            font-size: 1.2em;
+            padding: 15px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            user-select: none;
+            margin-right:20px;
+            
+        }
+        .nav-bar a:hover{
+            background-color: #34495e;
+        }
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    
+    
+}
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    
+}
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    
+}
+.hamburger span {
+    
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: white;
+    transition: all 0.3s ease-in-out;
+    
+    
+}
+
+        .box {
+            width: 85%;
+            margin: 10px auto;
+            padding-top :20px;
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+           
+            
+            
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin: 0;
+            color: #2C3E50;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin: 5px 0;
+            color: #7f8c8d;
+        }
+        header .major{
+            font-size: 0.8em;
+            margin: 5px 0;
+            
+            color: #7f8c8d;
+        }
+
+
+        /* Section Styles */
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            font-size: 2em;
+            color: #34495e;
+            text-transform: uppercase;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        
+        
+
+        /* Card Layout for Experience & Education */
+        .card {
+            background-color: #fff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        .card h3 {
+            color: #2C3E50;
+            font-size: 1.6em;
+            margin-bottom: 5px;
+        }
+
+        .card p {
+            font-size: 1em;
+            color: #7f8c8d;
+            margin: 5px 0;
+        }
+
+        .card .date {
+            font-weight: bold;
+            color: #3498db;
+        }
+        .card a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Two-column layout for Experience and Education */
+        .row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .column {
+            width: 50%;
+            
+        }
+        .title{
+            margin-left: 20px;
+        }
+        
+        /* Skills List */
+        .skills ol {
+            list-style-type:disc;
+            padding: 0;
+            margin-left:20px;
+            
+        }
+
+        .skills li {
+            padding: 8px 0;
+            font-size: 1.2em;
+            color: #2C3E50;
+            margin-left:20px;
+        }
+
+        /* Contact Info */
+        .contact-info a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            
+        }
+        .contact-info p {
+            margin-left:20px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #2C3E50;
+            padding: 30px;
+            
+            color: #ffffff;
+            margin-top: 100px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        
+        @media (max-width: 1100px) {
+            .nav-links {
+           
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 77px;
+        right: 0;
+        width: 200px;
+        
+    }
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        background: #2C3E50;
+        width: 210px;
+        height: 360px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 13px;
+        
+        
+    }
+    .hamburger {
+        
+        display: flex;
+        
+    }
+
+           
+
+            
+            .box {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .row {
+                flex-direction: column;
+            }
+
+            .column {
+                width: 100%;
+            }
+
+            header h1 {
+                font-size: 2.8em;
+            }
+        }
+
+        .about p {
+            font-size: 1em;
+            color: #7f8c8d;
+            margin: 5px 0;
+        }
+        .info {
+            margin : 20px;
+        }
+        .me{
+            display: block;
+            margin: 0 auto; 
+            border-radius: 50%;
+            width: 195px; 
+            height: 270px; 
+            margin-bottom: 10px;
+            margin-top:30px;
+            
+        }
+        .mail,.phone,.facebook,.instagram{
+            pointer-events: none;
+            user-select: none;
+        }
+        
+    </style>
+    
+    
+
+
+
+
+
+
+
+<body id = "home">
+    
+    <div class="box">
+        
+        <nav class="nav-bar">
+            <div class="logo"><h2><a href="#home">Home</a></h2></div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class = "nav-links">
+            
+            <a href="#about">About Me</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </ul>
+        </nav>
+        
+        <img src="img.JPG" alt="Me" class = "me">
+
+        <!-- Header Section -->
+        <header id="about">
+            <h1>Ratchanon Salee</h1>
+            <p>Digital and Information Technology</p>
+            <p class = "major">Major: Engineering and Technology </p>
+            
+        </header>
+        <section class ="about"  >
+            <h2 >About Me</h2>
+            <div class = "info">
+            <p>I'm a regular man, not anything special. I wake up each day to the same routines, facing the same challenges that everyone else does. I have my dreams and aspirations, but they’re woven into the fabric of everyday life, small moments of joy, struggles that feel monumental in the moment, and connections with those around me.</p>
+        </div>
+        </section>
+        <!-- Experience & Education Section -->
+        <section>
+            <h2 id="experience">Experience & Education</h2>
+            <div class="row">
+                <!-- Experience Column -->
+                <div class="column">
+                    <h3 class = "title">Experience</h3>
+                    <div class="card">
+                        <h3>IT Support - Gosoft (Thailand)</h3>
+                        <p class="date">27 February - 31 May 2024</p>
+                        <p><strong>Location:</strong>58/28 Moo 2, Chaengwattana Road, Bang Talad, Parkkred, Nonthaburi 11120.</p>
+                        <p>Work as consultant and guideline about IT and program.</p>
+                    </div>
+                    
+                </div>
+
+                <!-- Education Column -->
+                <div class="column">
+                    <h3 class = "title" id="education">Education</h3>
+                    <div class="card">
+                        <h3>3.82 - Panyapiwat Institute of Management</h3>
+                        <p class="date">[Not Graduated]</p>
+                        <p><strong>Location:</strong>85/1 Moo 2, Chaengwattana Rd., Bang-Talat, Pakkred, Nonthaburi,11120</p>
+                        <p>Website: <a href="http://pim.ac.th">http://pim.ac.th</a> </p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills">
+            <h2 id ="skills">Skills</h2>
+            <ol>
+                <li>Java</li>
+                <li>JavaScript</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                
+            </ol>
+        </section>
+
+        <!-- Contact Info Section -->
+        <section class="contact-info">
+            <h2 id = "contact">Contact Info</h2>
+            <p class = "mail"><strong>Email:</strong> <a href="" >6652100533@pim.stu.ac.th</a></p>
+            <p class = "phone"><strong>Phone:</strong> 092-1913542</p>
+            <p class = "facebook"><strong>Facebook:</strong> <a href="https://www.facebook.com/ratchanon.salee.197843/" target="_blank">Ratchanon Salee</a></p>
+            <p class = "instagram"><strong>Instagram:</strong> <a href="" target="_blank">ratchanon.exe</a></p>
+        </section>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>© 2024 Ratchanon. All rights reserved. | <a href="mailto:">Contact Me</a></p>
+        </footer>
+
+    </div>
+
+    <script>
+    function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    const hamburger = document.querySelector('.hamburger');
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active');
+}
+
+// Close menu when clicking anywhere outside
+document.addEventListener('click', function (event) {
+    const navLinks = document.querySelector('.nav-links');
+    const hamburger = document.querySelector('.hamburger');
+    
+    // Check if the click is outside the hamburger or nav menu
+    if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+    }
+});
+    </script>
+</body>
+</html>
+
+
+
