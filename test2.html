@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokédex</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .container {
+      display: flex;
+    }
+    .list {
+      width: 50%;
+      border-right: 1px solid #ccc;
+      padding-right: 20px;
+    }
+    .details {
+      width: 50%;
+      padding-left: 20px;
+    }
+    .list-item {
+      padding: 10px;
+      background: #f9f9f9;
+      margin-bottom: 5px;
+      cursor: pointer;
+    }
+    .list-item:hover {
+      background: #eaeaea;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function App() {
+      const [pokemonList, setPokemonList] = useState([]);
+      const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+    
+      useEffect(() => {
+        fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=151")
+          .then((response) => response.json())
+          .then((data) => setPokemonList(data.results))
+          .catch((error) => console.error("Error fetching Pokémon list:", error));
+      }, []);
+
+    
+      const fetchPokemonDetails = (url) => {
+        fetch(url)
+          .then((response) => response.json())
+          .then((data) => setSelectedPokemon(data))
+          .catch((error) => console.error("Error fetching Pokémon details:", error));
+      };
+
+      return (
+        <div>
+          <h1>Pokédex</h1>
+          <div className="container">
+            {/* Pokémon List */}
+            <div className="list">
+              <h2>Pokemon List</h2>
+              <ul style={{ listStyle: "none", padding: 0 }}>
+                {pokemonList.map((pokemon, index) => (
+                  <li
+                    key={index}
+                    className="list-item"
+                    onClick={() => fetchPokemonDetails(pokemon.url)}
+                  >
+                    {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Pokémon Details */}
+            <div className="details">
+              {selectedPokemon ? (
+                <div>
+                  <h2>{selectedPokemon.name.toUpperCase()}</h2>
+                  <img
+                    src={selectedPokemon.sprites.front_default}
+                    alt={selectedPokemon.name}
+                    style={{ width: "150px", height: "150px" }}
+                  />
+                  <p><strong>Height:</strong> {selectedPokemon.height}</p>
+                  <p><strong>Weight:</strong> {selectedPokemon.weight}</p>
+                  <h3>Abilities:</h3>
+                  <ul>
+                    {selectedPokemon.abilities.map((ability, index) => (
+                      <li key={index}>{ability.ability.name}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <p>Select a Pokémon to see details</p>
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById("root"));
+  </script>
+</body>
+</html>

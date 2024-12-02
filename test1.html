@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Example</title>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function App() {
+      const [number, setNumber] = React.useState(0);
+      const [stars, setStars] = React.useState([]);
+
+      const handleInputChange = (e) => {
+        const value = parseInt(e.target.value, 10);
+        setNumber(value);
+
+        if (!isNaN(value) && value > 0) {
+          const newStars = [];
+          for (let i = value; i > 0; i--) {
+            newStars.push("*".repeat(i));
+          }
+          setStars(newStars);
+        } else {
+          setStars([]);
+        }
+      };
+
+      return (
+        <div style={{ padding: "20px", fontFamily: "Arial" }}>
+          <h1>React: แสดงเครื่องหมาย * ลดลง</h1>
+          <input
+            type="number"
+            value={number}
+            onChange={handleInputChange}
+            placeholder="กรอกจำนวน"
+          />
+          <div style={{ marginTop: "20px" }}>
+            {stars.map((line, index) => (
+              <div key={index}>{line}</div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById("root"));
+  </script>
+</body>
+</html>
